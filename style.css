@@ -1,0 +1,205 @@
+/* ============================================================
+   MOBILE FIXES
+   ============================================================ */
+@media screen and (max-width: 768px) {
+
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  * {
+    max-width: 100%;
+  }
+
+  /* Navigation */
+  nav {
+    padding: 12px 15px;
+  }
+
+  .nav-logo {
+    font-size: 1.1rem;
+  }
+
+  .nav-book {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 100px 15px 60px;
+    min-height: auto;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero h1 {
+    word-break: break-word;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-btns .btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    gap: 20px;
+  }
+
+  /* Services */
+  .svc-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .svc-card {
+    padding: 20px;
+  }
+
+  .svc-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .svc-book-btn {
+    width: 100%;
+  }
+
+  /* Why us */
+  .why-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .why-card {
+    flex-direction: column;
+  }
+
+  /* Team */
+  .team-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .team-photo {
+    height: 180px;
+  }
+
+  /* Reviews */
+  .reviews-track {
+    gap: 12px;
+    padding-bottom: 10px;
+  }
+
+  .rev-card {
+    flex: 0 0 85%;
+  }
+
+  /* Booking */
+  .booking-wrap {
+    grid-template-columns: 1fr !important;
+  }
+
+  .bform-card {
+    padding: 22px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .submit-btn {
+    font-size: 0.95rem;
+  }
+
+  /* Location */
+  .loc-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer */
+  .footer-top {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Floating buttons */
+  .fabs {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .fab {
+    width: 52px;
+    height: 52px;
+  }
+
+  /* Drawer */
+  .drawer {
+    padding: 80px 20px 30px;
+  }
+
+  .drawer a {
+    font-size: 1.6rem;
+  }
+
+  /* Long text protection */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a,
+  span,
+  div {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+}
+
+/* Extra small phones */
+@media screen and (max-width: 480px) {
+
+  .section-inner {
+    padding: 50px 14px;
+  }
+
+  .hero-stat .n {
+    font-size: 1.5rem;
+  }
+
+  .rating-big {
+    font-size: 3rem;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .rev-card {
+    flex: 0 0 90%;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact-strip {
+    flex-direction: column;
+  }
+}
