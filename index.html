@@ -172,79 +172,38 @@ nav.scrolled {
 .ham.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
 
 /* ============================================================
-   MOBILE DRAWER — full screen on mobile
+   MOBILE DRAWER
    ============================================================ */
-.overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.85);
-  z-index: 480;
-  opacity: 0; visibility: hidden;
-  transition: all 0.35s ease;
-}
-.overlay.open { opacity:1; visibility:visible; }
-
 .drawer {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100vw;
+  top:0; right:-100%;
+  width: min(300px, 85vw);
   height: 100vh;
   background: var(--dark2);
   z-index: 490;
-  padding: 0 28px 40px;
+  padding: 100px 32px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  overflow-y: auto;
+  gap: 8px;
+  transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  border-left: 1px solid rgba(201,24,74,0.2);
 }
-.drawer.open { transform: translateX(0); }
-
-.drawer-close {
-  position: absolute;
-  top: 20px; right: 20px;
-  background: rgba(201,24,74,0.15);
-  border: 1px solid rgba(201,24,74,0.3);
-  border-radius: 50%;
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--rose-lt);
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  line-height: 1;
-}
-.drawer-close:hover { background: rgba(201,24,74,0.3); }
-
-.drawer-logo {
-  font-family: var(--font-h);
-  font-size: 1.6rem;
-  background: linear-gradient(135deg, var(--rose), var(--gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 32px;
-}
-
+.drawer.open { right:0; }
 .drawer a {
   font-family: var(--font-h);
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   color: var(--cream);
-  transition: color 0.2s, padding-left 0.2s;
-  display: block;
+  transition: color 0.2s;
 }
-.drawer a:hover { color: var(--rose-lt); padding-left: 8px; }
-
-.drawer-actions {
-  margin-top: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.drawer a:hover { color: var(--rose-lt); }
+.overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.6);
+  z-index:480; opacity:0; visibility:hidden; transition:all 0.3s ease;
 }
+.overlay.open { opacity:1; visibility:visible; }
 
 /* ============================================================
    HERO
@@ -1029,25 +988,23 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   </nav>
 
   <!-- DRAWER -->
-  <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
-  <div class="drawer" id="drawer">
-    <button class="drawer-close" onclick="closeDrawer()" aria-label="Close menu">&times;</button>
-    <div class="drawer-logo">✦ Sparklight</div>
+  <div class="overlay" id="overlay"></div>
+  <nav class="drawer" id="drawer">
     <a href="#services" onclick="closeDrawer()">Services</a>
     <a href="#team"     onclick="closeDrawer()">Our team</a>
     <a href="#reviews"  onclick="closeDrawer()">Reviews</a>
-    <a href="#booking"  onclick="closeDrawer(); setTimeout(scrollToBook,400);">Book appointment</a>
+    <a href="#booking"  onclick="closeDrawer(); scrollToBook();">Book appointment</a>
     <a href="#location" onclick="closeDrawer()">Visit us</a>
-    <div class="drawer-actions">
-      <a href="https://wa.me/919662372507?text=Hi%20Spark%20Light%20Salon!%20I'd%20like%20to%20book%20an%20appointment." target="_blank" class="btn btn-wa" style="justify-content:center;font-size:1rem;padding:16px;">
-        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.84.51 3.56 1.4 5.04L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.21 0 4.29.86 5.85 2.42a8.21 8.21 0 0 1 2.42 5.83c0 4.55-3.71 8.26-8.27 8.26a8.27 8.27 0 0 1-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.4c0-4.56 3.71-8.25 8.26-8.25zm-4.51 4.7c-.16 0-.42.06-.6.27-.18.21-.7.69-.7 1.67s.72 1.94.82 2.07c.1.14 1.36 2.18 3.41 2.97 1.71.65 2.06.55 2.42.51.36-.04 1.18-.48 1.34-.95.17-.46.17-.86.12-.94-.05-.08-.21-.13-.45-.25-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.12-.5.13-.12.29-.31.43-.47.14-.16.19-.27.29-.46.1-.18.05-.35-.03-.47-.08-.12-.61-1.49-.84-2.03-.17-.4-.34-.4-.5-.4z"/></svg>
-        Chat on WhatsApp
+    <div style="margin-top:20px;">
+      <a href="https://wa.me/919662372507" target="_blank" class="btn btn-wa" style="width:100%;justify-content:center;margin-bottom:10px;">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.84.51 3.56 1.4 5.04L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.21 0 4.29.86 5.85 2.42a8.21 8.21 0 0 1 2.42 5.83c0 4.55-3.71 8.26-8.27 8.26a8.27 8.27 0 0 1-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.4c0-4.56 3.71-8.25 8.26-8.25zm-4.51 4.7c-.16 0-.42.06-.6.27-.18.21-.7.69-.7 1.67s.72 1.94.82 2.07c.1.14 1.36 2.18 3.41 2.97 1.71.65 2.06.55 2.42.51.36-.04 1.18-.48 1.34-.95.17-.46.17-.86.12-.94-.05-.08-.21-.13-.45-.25-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.12-.5.13-.12.29-.31.43-.47.14-.16.19-.27.29-.46.1-.18.05-.35-.03-.47-.08-.12-.61-1.49-.84-2.03-.17-.4-.34-.4-.5-.4z"/></svg>
+        WhatsApp
       </a>
-      <a href="tel:+919662372507" class="btn btn-call" style="justify-content:center;font-size:1rem;padding:16px;">
-        📞 Call us now
+      <a href="tel:+919662372507" class="btn btn-call" style="width:100%;justify-content:center;">
+        📞 Call now
       </a>
     </div>
-  </div>
+  </nav>
 
   <!-- ========== HERO ========== -->
   <section class="hero">
@@ -1723,19 +1680,19 @@ window.addEventListener('scroll', () => {
 // === HAMBURGER ===
 const ham     = document.getElementById('ham');
 const drawer  = document.getElementById('drawer');
+const overlay = document.getElementById('overlay');
 
 ham.addEventListener('click', () => {
   ham.classList.toggle('open');
   drawer.classList.toggle('open');
-  document.getElementById('overlay').classList.toggle('open');
-  document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+  overlay.classList.toggle('open');
 });
+overlay.addEventListener('click', closeDrawer);
 
 function closeDrawer() {
   ham.classList.remove('open');
   drawer.classList.remove('open');
-  document.getElementById('overlay').classList.remove('open');
-  document.body.style.overflow = '';
+  overlay.classList.remove('open');
 }
 
 // === SCROLL REVEAL ===
