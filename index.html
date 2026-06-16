@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+
 <style>
 /* ============================================================
    ROOT TOKENS
@@ -993,6 +993,134 @@ footer {
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
   outline: 2px solid var(--rose);
   outline-offset: 3px;
+}
+/* ===========================
+   MOBILE RESPONSIVE FIX
+   =========================== */
+
+@media (max-width:768px){
+
+  html,body{
+    width:100%;
+    overflow-x:hidden;
+  }
+
+  .section-inner{
+    width:100%;
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .hero{
+    min-height:auto;
+    padding:110px 16px 70px;
+  }
+
+  .hero-content{
+    width:100%;
+    max-width:100%;
+  }
+
+  .hero-btns{
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+  }
+
+  .hero-btns .btn{
+    width:100%;
+    max-width:320px;
+    justify-content:center;
+  }
+
+  .hero-stats{
+    justify-content:center;
+    gap:18px;
+  }
+
+  .svc-grid,
+  .why-grid,
+  .team-grid,
+  .booking-wrap,
+  .loc-grid,
+  .footer-top{
+    grid-template-columns:1fr !important;
+  }
+
+  .form-row{
+    grid-template-columns:1fr !important;
+  }
+
+  .svc-footer{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  .svc-book-btn{
+    width:100%;
+  }
+
+  .contact-strip{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    text-align:center;
+    gap:10px;
+  }
+
+  .drawer{
+    width:100vw;
+    max-width:100vw;
+  }
+
+  .rev-card{
+    flex:0 0 88%;
+  }
+
+  img{
+    max-width:100%;
+    height:auto;
+  }
+}
+
+@media (max-width:480px){
+
+  .hero{
+    padding:100px 14px 60px;
+  }
+
+  .section-inner{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .btn{
+    width:100%;
+    justify-content:center;
+  }
+
+  .hero h1,
+  .section-title{
+    word-break:break-word;
+  }
+
+  .fab{
+    width:52px;
+    height:52px;
+  }
+
+  .fabs{
+    right:15px;
+    bottom:15px;
+  }
+
+  .rev-card{
+    flex:0 0 92%;
+  }
 }
 </style>
 </head>
