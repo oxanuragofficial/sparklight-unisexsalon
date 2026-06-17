@@ -586,7 +586,7 @@ section { position:relative; }
 .team-card:hover { transform:translateY(-6px); box-shadow: var(--shadow); }
 
 .team-photo {
-  height: 200px;
+  height: 220px;
   background: linear-gradient(135deg, #2d1a24, #1a0e18);
   display: flex; align-items:center; justify-content:center;
   font-family: var(--font-h);
@@ -594,12 +594,25 @@ section { position:relative; }
   position: relative;
   overflow: hidden;
 }
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.team-photo .ph-fallback {
+  position: relative;
+  z-index: 1;
+  color: var(--gold-lt);
+  opacity: 0.85;
+}
 .team-photo::after {
   content: '';
   position: absolute;
   bottom: 0; left:0; right:0;
   height: 50%;
   background: linear-gradient(to top, var(--dark3), transparent);
+  pointer-events: none;
 }
 
 .team-info { padding: 18px; }
@@ -608,9 +621,140 @@ section { position:relative; }
 .team-bio   { font-size:0.82rem; color:var(--muted); line-height:1.6; }
 
 /* ============================================================
+   GALLERY
+   ============================================================ */
+#gallery { background: var(--dark); }
+
+.gal-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 36px 0 32px;
+}
+.gal-tab {
+  padding: 9px 20px;
+  border-radius: 99px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-b);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.gal-tab.active, .gal-tab:hover {
+  background: linear-gradient(135deg, var(--rose), var(--rose-dk));
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 4px 16px rgba(201,24,74,0.3);
+}
+
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+@media(max-width:600px){
+  .gal-grid { grid-template-columns: repeat(2, 1fr); gap:10px; }
+}
+
+.gal-item {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--dark3);
+  border: 1px solid rgba(255,255,255,0.07);
+  aspect-ratio: 4 / 5;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.gal-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201,24,74,0.3);
+  box-shadow: 0 20px 50px rgba(201,24,74,0.15);
+}
+.gal-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+.gal-item:hover img { transform: scale(1.06); }
+
+.gal-item .ph-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--muted);
+  background: linear-gradient(135deg, #2d1a24, #1a0e18);
+}
+.gal-item .ph-fallback .ico { font-size: 1.8rem; opacity:0.6; }
+.gal-item .ph-fallback .lbl {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rose-lt);
+  padding: 0 14px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.gal-cap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 14px 14px 12px;
+  background: linear-gradient(to top, rgba(13,10,11,0.92), transparent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--cream);
+  z-index: 2;
+}
+
+/* Achievement / certificate strip */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+}
+@media(max-width:600px){
+  .cert-grid { grid-template-columns: 1fr; }
+}
+.cert-card {
+  background: var(--dark2);
+  border: 1px solid rgba(212,168,67,0.2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.cert-card:hover { transform:translateY(-4px); border-color: rgba(212,168,67,0.4); }
+.cert-photo {
+  aspect-ratio: 16/11;
+  background: linear-gradient(135deg, #2d2417, #1a140e);
+  display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+}
+.cert-photo img { width:100%; height:100%; object-fit:cover; }
+.cert-photo .ph-fallback {
+  display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--muted);
+}
+.cert-photo .ph-fallback .ico { font-size:1.8rem; color:var(--gold-lt); opacity:0.7; }
+.cert-photo .ph-fallback .lbl {
+  font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-lt); text-align:center; padding:0 14px;
+}
+.cert-info { padding:16px 18px; }
+.cert-name { font-family:var(--font-h); font-size:1.02rem; margin-bottom:3px; }
+.cert-sub  { font-size:0.78rem; color:var(--muted); }
+
+/* ============================================================
    REVIEWS
    ============================================================ */
-#reviews { background: var(--dark); }
+#reviews { background: var(--dark2); }
 
 .rating-hero {
   display: flex;
@@ -1163,6 +1307,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     <div class="drawer-logo">✦ Sparklight</div>
     <a href="#services" onclick="closeDrawer()">Services</a>
     <a href="#team"     onclick="closeDrawer()">Our team</a>
+    <a href="#gallery"  onclick="closeDrawer()">Gallery</a>
     <a href="#reviews"  onclick="closeDrawer()">Reviews</a>
     <a href="#booking"  onclick="closeDrawer(); setTimeout(scrollToBook,400);">Book appointment</a>
     <a href="#location" onclick="closeDrawer()">Visit us</a>
@@ -1381,39 +1526,251 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
         <p class="section-sub">Skilled, friendly and always focused on giving you the look you deserve.</p>
       </div>
       <div class="team-grid reveal">
+
+        <!-- To add a real photo: put a file named images/team-asif.jpg in your project
+             folder (next to this index.html) — it will replace the icon automatically. -->
         <div class="team-card">
-          <div class="team-photo">✂</div>
+          <div class="team-photo">
+            <img src="images/team-asif.jpg" alt="Asif, Senior hairstylist"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="ph-fallback" style="display:none;">✂</span>
+          </div>
           <div class="team-info">
             <div class="team-name">Asif</div>
             <div class="team-role">Senior hairstylist</div>
             <p class="team-bio">Precision cuts, fades and beard artistry for men — with a reputation for delivering exactly what you ask for.</p>
           </div>
         </div>
+
+        <!-- images/team-chand.jpg -->
         <div class="team-card">
-          <div class="team-photo">🌟</div>
+          <div class="team-photo">
+            <img src="images/team-chand.jpg" alt="Chand, Stylist and colourist"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="ph-fallback" style="display:none;">🌟</span>
+          </div>
           <div class="team-info">
             <div class="team-name">Chand</div>
             <div class="team-role">Stylist &amp; colourist</div>
             <p class="team-bio">Known for warm customer service and expert colour treatments that leave hair vibrant and healthy.</p>
           </div>
         </div>
+
+        <!-- images/team-makeup-artist.jpg -->
         <div class="team-card">
-          <div class="team-photo">💄</div>
+          <div class="team-photo">
+            <img src="images/team-makeup-artist.jpg" alt="Makeup artist"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="ph-fallback" style="display:none;">💄</span>
+          </div>
           <div class="team-info">
             <div class="team-name">Makeup artist</div>
             <div class="team-role">Certified makeup &amp; skin therapist</div>
             <p class="team-bio">Bridal, party and festive makeup — available in-salon and at your home across Vadodara.</p>
           </div>
         </div>
+
+        <!-- images/team-spa-specialist.jpg -->
         <div class="team-card">
-          <div class="team-photo">💆</div>
+          <div class="team-photo">
+            <img src="images/team-spa-specialist.jpg" alt="Spa specialist"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="ph-fallback" style="display:none;">💆</span>
+          </div>
           <div class="team-info">
             <div class="team-name">Spa specialist</div>
             <div class="team-role">Hair spa &amp; treatments</div>
             <p class="team-bio">Keratin, deep conditioning and hair spa treatments for smooth, healthy and manageable hair.</p>
           </div>
         </div>
+
       </div>
+    </div>
+  </section>
+
+  <!-- ========== GALLERY ========== -->
+  <section id="gallery">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-eyebrow">Our work &amp; achievements</span>
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-sub">A look inside Spark Light — our salon, our work and the recognition we've earned along the way.</p>
+      </div>
+
+      <div class="gal-tabs reveal">
+        <button class="gal-tab active" data-gcat="all">All</button>
+        <button class="gal-tab" data-gcat="salon">Salon</button>
+        <button class="gal-tab" data-gcat="work">Our Work</button>
+        <button class="gal-tab" data-gcat="achievement">Achievements &amp; Certificates</button>
+      </div>
+
+      <!-- PHOTO GALLERY GRID
+           To add a real photo: drop a file with the matching name into an
+           "images" folder next to this index.html. Until then, a soft
+           placeholder with the label shows automatically. -->
+      <div class="gal-grid reveal" id="gal-grid">
+
+        <div class="gal-item" data-gcat="salon">
+          <img src="images/gallery-salon-interior-1.jpg" alt="Salon interior"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="ph-fallback" style="display:none;">
+            <span class="ico">🏠</span>
+            <span class="lbl">Salon Interior<br>gallery-salon-interior-1.jpg</span>
+          </div>
+          <div class="gal-cap">Salon Interior</div>
+        </div>
+
+        <div class="gal-item" data-gcat="salon">
+          <img src="images/gallery-salon-interior-2.jpg" alt="Salon seating area"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="ph-fallback" style="display:none;">
+            <span class="ico">🏠</span>
+            <span class="lbl">Seating Area<br>gallery-salon-interior-2.jpg</span>
+          </div>
+          <div class="gal-cap">Seating Area</div>
+        </div>
+
+        <div class="gal-item" data-gcat="work">
+          <img src="images/gallery-work-haircut-1.jpg" alt="Haircut work sample"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="ph-fallback" style="display:none;">
+            <span class="ico">✂️</span>
+            <span class="lbl">Haircut Work<br>gallery-work-haircut-1.jpg</span>
+          </div>
+          <div class="gal-cap">Fresh Fade</div>
+        </div>
+
+        <div class="gal-item" data-gcat="work">
+          <img src="images/gallery-work-color-1.jpg" alt="Hair colour work sample"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="ph-fallback" style="display:none;">
+            <span class="ico">🎨</span>
+            <span class="lbl">Hair Colour Work<br>gallery-work-color-1.jpg</span>
+          </div>
+          <div class="gal-cap">Colour Transformation</div>
+        </div>
+
+        <div class="gal-item" data-gcat="work">
+          <img src="images/gallery-work-makeup-1.jpg" alt="Makeup work sample"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="ph-fallback" style="display:none;">
+            <span class="ico">💄</span>
+            <span class="lbl">Makeup Work<br>gallery-work-makeup-1.jpg</span>
+          </div>
+          <div class="gal-cap">Bridal Makeup</div>
+        </div>
+
+        <div class="gal-item" data-gcat="work">
+          <img src="images/gallery-work-beard-1.jpg" alt="Beard styling work sample"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="ph-fallback" style="display:none;">
+            <span class="ico">🪒</span>
+            <span class="lbl">Beard Styling<br>gallery-work-beard-1.jpg</span>
+          </div>
+          <div class="gal-cap">Beard Styling</div>
+        </div>
+
+        <div class="gal-item" data-gcat="salon">
+          <img src="images/gallery-salon-team-1.jpg" alt="Team at work"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="ph-fallback" style="display:none;">
+            <span class="ico">👥</span>
+            <span class="lbl">Team At Work<br>gallery-salon-team-1.jpg</span>
+          </div>
+          <div class="gal-cap">Team At Work</div>
+        </div>
+
+        <div class="gal-item" data-gcat="work">
+          <img src="images/gallery-work-nails-1.jpg" alt="Nail art work sample"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="ph-fallback" style="display:none;">
+            <span class="ico">💅</span>
+            <span class="lbl">Nail Art<br>gallery-work-nails-1.jpg</span>
+          </div>
+          <div class="gal-cap">Nail Art</div>
+        </div>
+
+        <!-- Achievements / certificates also flow into the same grid filter -->
+        <div class="gal-item" data-gcat="achievement">
+          <img src="images/achievement-award-1.jpg" alt="Salon award"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="ph-fallback" style="display:none;">
+            <span class="ico">🏆</span>
+            <span class="lbl">Award<br>achievement-award-1.jpg</span>
+          </div>
+          <div class="gal-cap">Excellence Award</div>
+        </div>
+
+        <div class="gal-item" data-gcat="achievement">
+          <img src="images/achievement-certificate-1.jpg" alt="Training certificate"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="ph-fallback" style="display:none;">
+            <span class="ico">📜</span>
+            <span class="lbl">Certificate<br>achievement-certificate-1.jpg</span>
+          </div>
+          <div class="gal-cap">Professional Certification</div>
+        </div>
+
+      </div>
+
+      <!-- ACHIEVEMENTS & CERTIFICATES — detail cards with title/sub -->
+      <div style="margin-top:56px;">
+        <h3 class="section-title" style="font-size:clamp(1.4rem,3.5vw,2rem);margin-bottom:6px;">Achievements &amp; Certificates</h3>
+        <p class="section-sub mt-8">Recognitions and qualifications earned by our team.</p>
+
+        <div class="cert-grid">
+
+          <!-- images/achievement-award-1.jpg -->
+          <div class="cert-card">
+            <div class="cert-photo">
+              <img src="images/achievement-award-1.jpg" alt="Salon excellence award"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="ph-fallback" style="display:none;">
+                <span class="ico">🏆</span>
+                <span class="lbl">achievement-award-1.jpg</span>
+              </div>
+            </div>
+            <div class="cert-info">
+              <div class="cert-name">Excellence Award</div>
+              <div class="cert-sub">Add title &amp; year when you upload the photo</div>
+            </div>
+          </div>
+
+          <!-- images/achievement-certificate-1.jpg -->
+          <div class="cert-card">
+            <div class="cert-photo">
+              <img src="images/achievement-certificate-1.jpg" alt="Professional training certificate"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="ph-fallback" style="display:none;">
+                <span class="ico">📜</span>
+                <span class="lbl">achievement-certificate-1.jpg</span>
+              </div>
+            </div>
+            <div class="cert-info">
+              <div class="cert-name">Professional Certification</div>
+              <div class="cert-sub">Add title &amp; issuing body when you upload the photo</div>
+            </div>
+          </div>
+
+          <!-- images/achievement-certificate-2.jpg -->
+          <div class="cert-card">
+            <div class="cert-photo">
+              <img src="images/achievement-certificate-2.jpg" alt="Additional certificate"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="ph-fallback" style="display:none;">
+                <span class="ico">📜</span>
+                <span class="lbl">achievement-certificate-2.jpg</span>
+              </div>
+            </div>
+            <div class="cert-info">
+              <div class="cert-name">Certificate</div>
+              <div class="cert-sub">Add title &amp; issuing body when you upload the photo</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1627,6 +1984,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
           <ul>
             <li><a href="#services">Services</a></li>
             <li><a href="#team">Our team</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#reviews">Reviews</a></li>
             <li><a href="#booking">Book appointment</a></li>
             <li><a href="#location">Visit us</a></li>
@@ -1881,6 +2239,18 @@ document.querySelectorAll('.svc-tab').forEach(tab => {
     const cat = tab.dataset.cat;
     document.querySelectorAll('.svc-card').forEach(card => {
       card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+    });
+  });
+});
+
+// === GALLERY TABS ===
+document.querySelectorAll('.gal-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.gal-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const cat = tab.dataset.gcat;
+    document.querySelectorAll('.gal-item').forEach(item => {
+      item.style.display = (cat === 'all' || item.dataset.gcat === cat) ? '' : 'none';
     });
   });
 });
